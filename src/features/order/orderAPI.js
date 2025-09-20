@@ -1,11 +1,6 @@
-const API_BASE =
-  process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_API_URL
-    : ""; 
-    
-  export function createOrder(order) {
+export function createOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE}/orders`, {
+    const response = await fetch('/orders', {
       method: 'POST',
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
@@ -17,7 +12,7 @@ const API_BASE =
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${API_BASE}/orders/`+order.id, {
+    const response = await fetch('/orders/'+order.id, {
       method: 'PATCH',
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
@@ -39,7 +34,7 @@ export function fetchAllOrders(sort, pagination) {
 
   return new Promise(async (resolve) => {
     const response = await fetch(
-      `${API_BASE}/orders?` + queryString
+      '/orders?' + queryString
     );
     const data = await response.json();
     const totalOrders = await response.headers.get('X-Total-Count');

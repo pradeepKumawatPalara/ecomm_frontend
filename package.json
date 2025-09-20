@@ -1,7 +1,7 @@
 {
   "name": "react-ecommerce",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080",
+  "proxy":"https://ecomm-backend-dsq1.onrender.com",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.14",
@@ -26,10 +26,9 @@
     "tailwindcss": "^3.3.2",
     "web-vitals": "^2.1.4"
   },
-  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
