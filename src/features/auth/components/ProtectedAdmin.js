@@ -5,14 +5,21 @@ import { selectUserInfo } from '../../user/userSlice';
 
 function ProtectedAdmin({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const userInfo = useSelector(selectUserInfo)
+  const userInfo = useSelector(selectUserInfo);
 
   if (!user) {
-    return <Navigate to="/login" replace={true}></Navigate>;
+    return <Navigate to="/login" replace />;
   }
-  if (userInfo && userInfo.role!=='admin') {
-    return <Navigate to="/" replace={true}></Navigate>;
+
+  // Wait for userInfo to be fetched before deciding
+  if (userInfo === undefined) {
+    return <div>Loading...</div>; // Or a proper spinner/loader
   }
+
+  if (userInfo.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
+
   return children;
 }
 
