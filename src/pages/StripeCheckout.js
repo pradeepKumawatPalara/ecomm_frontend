@@ -18,8 +18,8 @@ export default function StripeCheckout() {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
-      method: "POST",
+    fetch(`${process.env.REACT_APP_API_URL}/create-payment-intent`, {
+      method: "POST", credentials: "include" ,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ totalAmount: currentOrder.totalAmount, orderId:currentOrder.id }),
     

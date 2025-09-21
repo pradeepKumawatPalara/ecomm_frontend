@@ -1,7 +1,7 @@
 export function addToCart(item) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/cart', {
-      method: 'POST',
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`, {
+      method: 'POST', credentials: "include" ,
       body: JSON.stringify(item),
       headers: { 'content-type': 'application/json' },
     });
@@ -12,7 +12,9 @@ export function addToCart(item) {
 
 export function fetchItemsByUserId() {
   return new Promise(async (resolve) => {
-    const response = await fetch('/cart');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`,{
+      credentials: "include" // for JWT cookies
+    });
     const data = await response.json();
     resolve({ data });
   });
@@ -20,8 +22,9 @@ export function fetchItemsByUserId() {
 
 export function updateCart(update) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/cart/' + update.id, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/` + update.id, {
       method: 'PATCH',
+       credentials: "include" ,
       body: JSON.stringify(update),
       headers: { 'content-type': 'application/json' },
     });
@@ -32,8 +35,9 @@ export function updateCart(update) {
 
 export function deleteItemFromCart(itemId) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/cart/' + itemId, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/` + itemId, {
       method: 'DELETE',
+       credentials: "include" ,
       headers: { 'content-type': 'application/json' },
     });
     const data = await response.json();

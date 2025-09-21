@@ -1,7 +1,8 @@
 export function createOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/orders', {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
       method: 'POST',
+       credentials: "include" ,
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
     });
@@ -12,8 +13,8 @@ export function createOrder(order) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/orders/'+order.id, {
-      method: 'PATCH',
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/`+order.id, {
+      method: 'PATCH', credentials: "include" ,
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
     });

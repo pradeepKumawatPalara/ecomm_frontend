@@ -1,7 +1,9 @@
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/products/' + id);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/` + id,{
+      credentials: "include" // for JWT cookies
+    });
     const data = await response.json();
     resolve({ data });
   });
@@ -9,8 +11,8 @@ export function fetchProductById(id) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch('/products/', {
-      method: 'POST',
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/products/`, {
+      method: 'POST', credentials: "include" ,
       body: JSON.stringify(product),
       headers: { 'content-type': 'application/json' },
     });
@@ -22,9 +24,9 @@ export function createProduct(product) {
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
     const response = await fetch(
-      '/products/' + update.id,
+      `${process.env.REACT_APP_API_URL}/products/` + update.id,
       {
-        method: 'PATCH',
+        method: 'PATCH', credentials: "include" ,
         body: JSON.stringify(update),
         headers: { 'content-type': 'application/json' },
       }
@@ -58,7 +60,9 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
 
   return new Promise(async (resolve) => {
     const response = await fetch(
-      '/products?' + queryString
+      `${process.env.REACT_APP_API_URL}/products?` + queryString,{
+      credentials: "include" // for JWT cookies
+    }
     );
     const data = await response.json();
     const totalItems = await response.headers.get('X-Total-Count');
@@ -68,7 +72,9 @@ export function fetchProductsByFilters(filter, sort, pagination, admin) {
 
 export function fetchCategories() {
   return new Promise(async (resolve) => {
-    const response = await fetch('/categories');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`,{
+      credentials: "include" // for JWT cookies
+    });
     const data = await response.json();
     resolve({ data });
   });
@@ -76,7 +82,9 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise(async (resolve) => {
-    const response = await fetch('/brands');
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/brands`,{
+      credentials: "include" // for JWT cookies
+    });
     const data = await response.json();
     resolve({ data });
   });
