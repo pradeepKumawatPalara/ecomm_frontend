@@ -14,13 +14,13 @@ function ProtectedAdmin({ children }) {
   }
 
   // Wait for userInfo to be fetched before deciding
-  // if (userInfo === undefined) {
-  //   return <div>Loading...</div>; // Or a proper spinner/loader
-  // }
+  if (userInfo === undefined) {
+    return <div>Loading...</div>; // Or a proper spinner/loader
+  }
 
-  // if (userInfo.role !== 'admin') {
-  //   return <Navigate to="/" replace />;
-  // }
+  if (userInfo.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
 
   return children;
 }
