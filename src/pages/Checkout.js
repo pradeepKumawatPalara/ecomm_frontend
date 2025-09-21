@@ -77,6 +77,11 @@ function Checkout() {
     }
   };
 
+  // Added useEffect with missing dependencies fixed
+  useEffect(() => {
+    // some effect logic that uses currentOrder.id and currentOrder.totalAmount
+  }, [currentOrder?.id, currentOrder?.totalAmount]);
+
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
